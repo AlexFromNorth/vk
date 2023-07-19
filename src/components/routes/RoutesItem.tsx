@@ -2,7 +2,6 @@ import React, { FC, PropsWithChildren } from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { routes } from "./List";
 import Layout from "../layout/Layout";
-import UserItems from "../layout/sidebar/UserItems";
 
 
 const RoutesItem: FC = () => {

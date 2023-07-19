@@ -1,8 +1,21 @@
-import { Avatar, Box, Card } from "@mui/material";
+import { QuestionAnswer } from "@mui/icons-material";
+import {
+  Avatar,
+  Box,
+  Card,
+  List,
+  ListItem,
+  ListItemButton,
+  ListItemIcon,
+  ListItemText,
+} from "@mui/material";
 import React, { FC } from "react";
+import { useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
 
 const UserItems: FC = () => {
+  const navigate = useNavigate();
+
   return (
     <Card
       variant="outlined"
@@ -43,13 +56,25 @@ const UserItems: FC = () => {
               position: "absolute",
               bottom: 0,
               right: 0,
-              borderRadius: '50%',
-              border: '2px solid #F1F7FA'
+              borderRadius: "50%",
+              border: "2px solid #F1F7FA",
             }}
           />
         </Box>
         <span style={{ fontSize: 14 }}>Alex Biryukov</span>
       </Link>
+
+      <List sx={{ display: "inline" }}>
+        <ListItem disablePadding>
+          <ListItemButton onClick={() => navigate("/messages")}>
+            <ListItemIcon>
+              <QuestionAnswer />
+            </ListItemIcon>
+            <ListItemText primary="Сообщения" />
+          </ListItemButton>
+        </ListItem>
+      </List>
+      
     </Card>
   );
 };
