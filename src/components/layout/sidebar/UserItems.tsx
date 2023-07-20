@@ -1,4 +1,3 @@
-import { QuestionAnswer } from "@mui/icons-material";
 import {
   Avatar,
   Box,
@@ -10,8 +9,9 @@ import {
   ListItemText,
 } from "@mui/material";
 import React, { FC } from "react";
-import { useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
+import { QuestionAnswer } from "@mui/icons-material";
+import { useNavigate } from "react-router-dom";
 
 const UserItems: FC = () => {
   const navigate = useNavigate();
@@ -63,18 +63,16 @@ const UserItems: FC = () => {
         </Box>
         <span style={{ fontSize: 14 }}>Alex Biryukov</span>
       </Link>
-
       <List sx={{ display: "inline" }}>
         <ListItem disablePadding>
           <ListItemButton onClick={() => navigate("/messages")}>
-            <ListItemIcon>
+            <ListItemIcon sx={{ minWidth: 36 }}>
               <QuestionAnswer />
             </ListItemIcon>
             <ListItemText primary="Сообщения" />
           </ListItemButton>
         </ListItem>
       </List>
-      
     </Card>
   );
 };
