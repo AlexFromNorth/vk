@@ -11,11 +11,11 @@ const Layout: FC<PropsWithChildren<HeaderProps>> = ({children}) => {
   return (
     <>
       <Header />
-      <Grid container spacing={2} marginX={5} marginTop={2}>
-        <Grid md={2}>
+      <Grid container spacing={2} paddingX={5} marginTop={2}>
+        <Grid md={3}>
           <Sidebar />
         </Grid>
-        <Grid md={10}>{children}</Grid>
+        <Grid md={9}>{children}</Grid>
       </Grid>
     </>
   );

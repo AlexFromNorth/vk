@@ -1,11 +1,12 @@
 import React from 'react'
-import {Button} from '@mui/material'
+import {Box} from '@mui/material'
+import AddPost from './AddPost'
 
 const Home = () => {
   return (
-    <div>Home
-      <Button variant="contained">Contained</Button>
-    </div>
+    <Box>
+      <AddPost/>
+    </Box>
   )
 }
 
