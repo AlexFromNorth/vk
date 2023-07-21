@@ -1,21 +1,28 @@
 import { Box, TextField } from "@mui/material";
 import React, { FC, useState } from "react";
-import {   IAddPost } from "../../../types";
+import { IAddPost } from "../../../types";
 import { users } from "../../layout/sidebar/DataUsers";
 
+const AddPost: FC<IAddPost> = ({ setPosts }) => {
+  const [content, setContent] = useState<string>("");
 
+  const timeCreated = (time:any) => {
+    return `
+    ${new Date().getFullYear()}.${String(new Date().getMonth()).padStart(2, "0")}.${String(new Date().getDay()).padStart(2, "0")} 
+    ${new Date().getHours()}:${String(new Date().getMinutes()).padStart(2, "0")} 
+    `
+  }
 
-const AddPost: FC<IAddPost> = ({setPosts}) => {
-    const [content, setContent] = useState<string>('')
-
-    const addPostHandler = ()=>{
-        setPosts(prev=> [...prev,{
-            author: users[0],
-            content,
-            // createdAt: new Date()
-            createdAt: '5 m later',
-        }])
-    }
+  const addPostHandler = () => {
+    setPosts((prev) => [
+      ...prev,
+      {
+        author: users[0],
+        content,
+        createdAt: timeCreated(`${new Date}`)
+      },
+    ]);
+  };
 
   return (
     <Box
@@ -30,11 +37,11 @@ const AddPost: FC<IAddPost> = ({setPosts}) => {
         variant="outlined"
         margin="normal"
         InputProps={{
-          sx: { borderRadius: "25px", backgroundColor: 'F9F9F9' },
+          sx: { borderRadius: "25px", backgroundColor: "F9F9F9" },
         }}
         sx={{ width: "100%" }}
         onKeyPress={addPostHandler}
-        onChange={e=> setContent(e.target.value)}
+        onChange={(e) => setContent(e.target.value)}
         value={content}
       />
     </Box>
