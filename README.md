@@ -45,3 +45,6 @@ You can learn more in the [Create React App documentation](https://facebook.gith
 
 To learn React, check out the [React documentation](https://reactjs.org/).
 # vk
+
+
+! - сделать шаблон для картинок поста, чтобы они красиво стояли в зависимости от количества онных

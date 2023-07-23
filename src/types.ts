@@ -4,10 +4,10 @@ import { Dispatch, SetStateAction } from "react";
 
 export type TypeSetState<T> = Dispatch<SetStateAction<T>>
 
-export const timeCreated = (time:any) => {
+export const timeCreated = (time:Date) => {
     return `
-    ${new Date().getFullYear()}.${String(new Date().getMonth()).padStart(2, "0")}.${String(new Date().getDay()).padStart(2, "0")} 
-    ${new Date().getHours()}:${String(new Date().getMinutes()).padStart(2, "0")} 
+    ${time.getFullYear()}.${String(time.getMonth()).padStart(2, "0")}.${String(time.getDay()).padStart(2, "0")} 
+    ${time.getHours()}:${String(time.getMinutes()).padStart(2, "0")} 
     `
   }
 

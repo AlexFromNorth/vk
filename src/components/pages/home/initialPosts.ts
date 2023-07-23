@@ -5,10 +5,10 @@ export const initialPosts:IPost[] = [
         author:{
           id: 0,
           avatar: 'https://omoro.ru/wp-content/uploads/2018/05/prikilnie-kartinki-na-avatarky-dlia-devyshek-12.jpg',
-          name: 'National Geographic',
+          name: 'Alexander Biryukov',
         },
         content: 'Национальный парк Таб Каек Ханг Нак',
-        createdAt: timeCreated(`${new Date}`),
+        createdAt: timeCreated(new Date),
         images: [
           'https://3.bp.blogspot.com/-crNxNfNb36o/WOS3NYlg4-I/AAAAAAAAGrk/al1Z1kPUmhk6lunKPPLu5veZeHOlt7crACLcB/s1600/IMG_7933.jpg',
           'https://image-cdn.hypb.st/https%3A%2F%2Fhypebeast.com%2Fimage%2F2019%2F06%2Fnational-geographic-2019-travel-photo-contest-winners-10.jpg?q=90&w=1400&cbr=1&fit=max',

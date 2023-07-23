@@ -1,27 +1,23 @@
 import { Box, TextField } from "@mui/material";
-import React, { FC, useState } from "react";
+import React, { FC, KeyboardEvent, useState } from "react";
 import { IAddPost, timeCreated } from "../../../types";
 import { users } from "../../layout/sidebar/DataUsers";
 
 const AddPost: FC<IAddPost> = ({ setPosts }) => {
   const [content, setContent] = useState<string>("");
 
-//   const timeCreated = (time:any) => {
-//     return `
-//     ${new Date().getFullYear()}.${String(new Date().getMonth()).padStart(2, "0")}.${String(new Date().getDay()).padStart(2, "0")} 
-//     ${new Date().getHours()}:${String(new Date().getMinutes()).padStart(2, "0")} 
-//     `
-//   }
-
-  const addPostHandler = () => {
-    setPosts((prev) => [
-      ...prev,
-      {
-        author: users[0],
-        content,
-        createdAt: timeCreated(`${new Date}`)
-      },
-    ]);
+  const addPostHandler = (e: KeyboardEvent<HTMLInputElement>) => {
+    if (e.key === "Enter") {
+      setPosts((prev) => [
+        {
+          author: users[0],
+          content,
+          createdAt: timeCreated(new Date()),
+        },
+        ...prev,
+      ]);
+      setContent('')
+    }
   };
 
   return (
