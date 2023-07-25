@@ -1,7 +1,7 @@
 import { Alert, Button, ButtonGroup, Grid, TextField } from "@mui/material";
 import React, { FC, SyntheticEvent, useState } from "react";
 import { IUserData } from "./types";
-import { createUserWithEmailAndPassword, getAuth } from "firebase/auth";
+import { createUserWithEmailAndPassword, getAuth, signInWithEmailAndPassword } from "firebase/auth";
 
 const Auth: FC = () => {
   const [isRegForm, setIsRegForm] = useState(false);
@@ -27,6 +27,15 @@ const Auth: FC = () => {
         error.message && setError(error.message);
       }
     } else {
+      try {
+        await signInWithEmailAndPassword(
+          auth,
+          userData.email,
+          userData.password
+        );
+      } catch (error: any) {
+        error.message && setError(error.message);
+      }
       console.log("auth");
     }
     console.log(userData.email, userData.password);

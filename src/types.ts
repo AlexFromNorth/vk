@@ -12,7 +12,7 @@ export const timeCreated = (time:Date) => {
   }
 
 export interface IUser {
-    id: number
+    id: string
     avatar: string
     name: string
     isInNetwork?: boolean

@@ -3,7 +3,7 @@ import { IPost, timeCreated } from "../../../types"
 export const initialPosts:IPost[] = [
     {
         author:{
-          id: 0,
+          id: '0',
           avatar: 'https://omoro.ru/wp-content/uploads/2018/05/prikilnie-kartinki-na-avatarky-dlia-devyshek-12.jpg',
           name: 'Alexander Biryukov',
         },
