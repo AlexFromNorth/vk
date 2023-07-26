@@ -27,6 +27,7 @@ const UserItems: FC = () => {
         border: "none",
         borderRadius: 3,
         backgroundColor: "#F1F7FA",
+        marginBottom: 5,
       }}
     >
       {users.map((user) => (

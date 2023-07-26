@@ -2,6 +2,7 @@ import { FC, createContext, useEffect, useMemo, useState } from "react";
 import { IUser, TypeSetState } from "../../types";
 import { Auth, getAuth, onAuthStateChanged } from "firebase/auth";
 import { users } from "../layout/sidebar/DataUsers";
+import { useNavigate } from "react-router-dom";
 
 interface IContext {
   user: IUser | null;
@@ -12,7 +13,7 @@ interface Props {
   children: React.ReactNode;
 }
 
-const AuthContext = createContext<IContext>({} as IContext);
+export const AuthContext = createContext<IContext>({} as IContext);
 
 export const AuthProvider: FC<Props> = ({ children }) => {
   const [user, setUser] = useState<IUser | null>(null);
@@ -21,17 +22,20 @@ export const AuthProvider: FC<Props> = ({ children }) => {
 
   useEffect(() => {
     const auth = getAuth();
-    const unListen = onAuthStateChanged(ga, authUser => {
-      setUser(
-        authUser
-          ? {
-              id: authUser.uid ,
-              avatar: users[1].avatar,
-              name: authUser?.displayName || "",
-            }
-          : null
-      )
-    })
+    const unListen = onAuthStateChanged(ga, (authUser) => {
+      if (authUser) {
+        setUser(
+          {
+            id: authUser.uid,
+            avatar: users[1].avatar,
+            name: authUser?.displayName || "",
+          }
+        );
+      }
+      else{
+        setUser(null)
+      }
+    });
     return () => {
       unListen();
     };
