@@ -15,7 +15,8 @@ const Layout: FC<PropsWithChildren<HeaderProps>> = ({ children }) => {
       <Header />
       <Grid container spacing={2} paddingX={5} marginTop={2}>
         {user && (
-          <Grid md={user ? 9 : 12}>
+          // <Grid md={user ? 9 : 12}>
+          <Grid md={3}>
             <Sidebar />
           </Grid>
         )}

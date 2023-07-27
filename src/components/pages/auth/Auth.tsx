@@ -5,6 +5,7 @@ import {
   createUserWithEmailAndPassword,
   getAuth,
   signInWithEmailAndPassword,
+  updateProfile,
 } from "firebase/auth";
 import { useAuth } from "../../providers/useAuth";
 import { useNavigate } from "react-router-dom";
@@ -32,11 +33,14 @@ const Auth: FC = () => {
 
     if (isRegForm) {
       try {
-        await createUserWithEmailAndPassword(
+        const res = await createUserWithEmailAndPassword(
           ga,
           userData.email,
           userData.password
         );
+        await updateProfile(res.user, {
+          displayName: userData.name
+        })
       } catch (error: any) {
         error.message && setError(error.message);
       }
@@ -52,6 +56,7 @@ const Auth: FC = () => {
     setUserData({
       email: "",
       password: "",
+      name: '',
     });
   };
 
@@ -64,6 +69,16 @@ const Auth: FC = () => {
       )}
       <Grid display="flex" justifyContent="center" textAlign="center">
         <form onSubmit={handleLogin}>
+          <TextField
+            label="Name"
+            variant="outlined"
+            value={userData.name}
+            onChange={(e) =>
+              setUserData({ ...userData, name: e.target.value })
+            }
+            sx={{ display: "block", marginBottom: 3 }}
+            // required
+          />
           <TextField
             type="email"
             label="Email"
