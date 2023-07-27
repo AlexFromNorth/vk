@@ -21,6 +21,7 @@ const Auth: FC = () => {
   } as IUserData);
 
   const navigate = useNavigate();
+  console.log(user)
 
   useEffect(() => {
     if (user) {
@@ -50,9 +51,9 @@ const Auth: FC = () => {
       } catch (error: any) {
         error.message && setError(error.message);
       }
-      console.log("auth");
+      // console.log("auth");
     }
-    console.log(userData.email, userData.password);
+    // console.log(userData.email, userData.password);
     setUserData({
       email: "",
       password: "",

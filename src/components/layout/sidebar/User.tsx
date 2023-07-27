@@ -7,6 +7,8 @@ import { useNavigate } from "react-router-dom";
 const User: FC = () => {
   const navigate = useNavigate();
   const { user, ga } = useAuth();
+//   console.log(ga)
+//   console.log(signOut)
   return (
     <Card
       variant="outlined"
@@ -26,7 +28,8 @@ const User: FC = () => {
       />
       <Button
         onClick={() => {
-          signOut(ga);
+            signOut(ga);
+            // navigate('/auth')
         }}
       >
         Выйти
