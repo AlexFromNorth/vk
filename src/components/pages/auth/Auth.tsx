@@ -21,7 +21,6 @@ const Auth: FC = () => {
   } as IUserData);
 
   const navigate = useNavigate();
-  console.log(user)
 
   useEffect(() => {
     if (user) {
@@ -78,7 +77,6 @@ const Auth: FC = () => {
               setUserData({ ...userData, name: e.target.value })
             }
             sx={{ display: "block", marginBottom: 3 }}
-            // required
           />
           <TextField
             type="email"

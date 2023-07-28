@@ -1,13 +1,34 @@
-import React, { FC } from "react";
+import React, { FC, useEffect, useState } from "react";
 import { IPost } from "../../../types";
 import { Avatar, Box, ImageList, ImageListItem } from "@mui/material";
 import { Link } from "react-router-dom";
+import { collection, doc, onSnapshot, orderBy, query } from "firebase/firestore";
+import { useAuth } from "../../providers/useAuth";
+import { initialPosts } from "./initialPosts";
 
-interface IPosts {
-  posts: IPost[];
-}
+// interface IPosts {
+//   posts: IPost[];
+// }
 
-const Posts: FC<IPosts> = ({ posts }) => {
+// const Posts: FC<IPosts> = () => {
+const Posts: FC = () => {
+  const {db} = useAuth()
+  const [error, setError] = useState('')
+  const [posts, setPosts] = useState<IPost[]>(initialPosts)
+
+  useEffect(()=>{
+    const q = query(collection(db, "posts"), orderBy('createdAt', "asc"));
+
+      const unsub = onSnapshot(q, doc=>{
+        doc.forEach((d:any) =>{
+          setPosts(prev => [...prev,  d.data()])
+        })
+      })
+      return () => {
+        unsub()
+      }
+  }, [])
+
   return (
     <>
       {posts.map((post, idx) => (

@@ -8,7 +8,7 @@ import { useAuth } from '../../providers/useAuth'
 import { useNavigate } from 'react-router-dom'
 
 const Home = () => {
-  const [posts, setPosts] = useState<IPost[]>(initialPosts)
+  // const [posts, setPosts] = useState<IPost[]>(initialPosts)
   const { user } = useAuth();
   // console.log(user)
   // const navigate = useNavigate()
@@ -22,8 +22,8 @@ const Home = () => {
   return (
     <>
     <Box>
-      <AddPost setPosts={setPosts}/>
-      <Posts posts={posts}/>
+      <AddPost />
+      <Posts />
     </Box>
     </>
   )
