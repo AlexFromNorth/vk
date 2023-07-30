@@ -1,9 +1,18 @@
-import React, { FC } from 'react'
+import React, { FC } from "react";
 
-const Friends:FC = () => {
+import AddFriend from "./AddFriend";
+import { Box } from "@mui/material";
+import Characters from "./Characters";
+
+const Friends: FC = () => {
   return (
-    <div>Friends</div>
-  )
-}
+    <>
+      <Box>
+        <AddFriend />
+        <Characters />
+      </Box>
+    </>
+  );
+};
 
-export default Friends
+export default Friends;

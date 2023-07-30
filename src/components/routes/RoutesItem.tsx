@@ -34,7 +34,7 @@ const RoutesItem: FC = () => {
             <>
               <Route
                 path={route.path}
-                key={`router ${route.path}`}
+                key={`router ${i}`}
                 // element={<Layout children={<route.element/>}/>}
                 element={
                   <Layout>

@@ -40,7 +40,7 @@ export const routes = [
         auth: true,
     },
     {
-        path: '/friends/:id',
+        path: '/friends',
         exact: false,
         element: Friends,
         auth: true,

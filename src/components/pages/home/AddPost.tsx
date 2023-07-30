@@ -24,6 +24,8 @@ const AddPost: FC = () => {
       } catch (e: any) {
         setError(e);
       }
+
+
       setContent("");
     }
   };

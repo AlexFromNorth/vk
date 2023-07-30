@@ -1,3 +1,4 @@
+import { IUserData } from './components/pages/auth/types';
 import { SvgIconTypeMap } from "@mui/material";
 import { OverridableComponent } from "@mui/material/OverridableComponent";
 import { Dispatch, SetStateAction } from "react";
@@ -39,4 +40,15 @@ export interface IMessage {
     user: IUser
     message: string
     createdAt?: string
+}
+
+// 
+export interface IUserDataTest{
+    email: string
+    name: string
+    password: string
+}
+export interface IFriends {
+    createdAt: string
+    userData: IUserDataTest
 }

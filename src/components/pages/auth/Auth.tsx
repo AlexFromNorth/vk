@@ -41,10 +41,12 @@ const Auth: FC = () => {
         await updateProfile(res.user, {
           displayName: userData.name
         })
+        // console.log(res.user)
       } catch (error: any) {
         error.message && setError(error.message);
       }
     } else {
+
       try {
         await signInWithEmailAndPassword(ga, userData.email, userData.password);
       } catch (error: any) {
