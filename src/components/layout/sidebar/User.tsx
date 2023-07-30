@@ -19,17 +19,22 @@ const User: FC = () => {
         borderRadius: 3,
         marginBottom: 5,
       }}
+      
     >
       <Chip
         label={user?.name || "Without a name"}
         variant="outlined"
         avatar={<Avatar alt="" src={user?.avatar} />}
         sx={{ display: "flex", marginBottom: 2 }}
+        onClick={() => {
+          navigate('/profile')
+      }}
       />
       <Button
+      
         onClick={() => {
             signOut(ga);
-            // navigate('/auth')
+            navigate('/auth')
         }}
       >
         Выйти
