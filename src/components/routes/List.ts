@@ -16,6 +16,12 @@ export const routes = [
         auth: true,
     },
     {
+        path: '/profile/',
+        exact: false,
+        element: Profile,
+        auth: true,
+    },
+    {
         path: '/profile/:id',
         exact: false,
         element: Profile,

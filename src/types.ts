@@ -6,7 +6,7 @@ export type TypeSetState<T> = Dispatch<SetStateAction<T>>
 
 export const timeCreated = (time:Date) => {
     return `
-    ${time.getFullYear()}.${String(time.getMonth()).padStart(2, "0")}.${String(time.getDay()).padStart(2, "0")} 
+    ${time.getFullYear()}.${String(time.getMonth()).padStart(2, "0")}.${String(time.getDate()).padStart(2, "0")} 
     ${time.getHours()}:${String(time.getMinutes()).padStart(2, "0")} 
     `
   }
@@ -33,4 +33,10 @@ export interface IMenuItem {
     title: string
     link: string
     icon: OverridableComponent<SvgIconTypeMap<{}, "svg">> & { muiName: string; }
+}
+
+export interface IMessage {
+    user: IUser
+    message: string
+    createdAt?: string
 }

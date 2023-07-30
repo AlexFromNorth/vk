@@ -24,15 +24,6 @@ const AddPost: FC = () => {
       } catch (e: any) {
         setError(e);
       }
-
-      // setPosts((prev) => [
-      //   {
-      //     author: user,
-      //     content,
-      //     createdAt: timeCreated(new Date()),
-      //   },
-      //   ...prev,
-      // ]);
       setContent("");
     }
   };

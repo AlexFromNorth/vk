@@ -13,16 +13,18 @@ import { initialPosts } from "./initialPosts";
 // const Posts: FC<IPosts> = () => {
 const Posts: FC = () => {
   const {db} = useAuth()
-  const [error, setError] = useState('')
-  const [posts, setPosts] = useState<IPost[]>(initialPosts)
+  // initialPosts
+  const [posts, setPosts] = useState<IPost[]>([])
 
   useEffect(()=>{
-    const q = query(collection(db, "posts"), orderBy('createdAt', "asc"));
+    const q = query(collection(db, "posts"), orderBy('createdAt', "desc"));
 
       const unsub = onSnapshot(q, doc=>{
+        const array:IPost[]=[]
         doc.forEach((d:any) =>{
-          setPosts(prev => [...prev,  d.data()])
+          array.push(d.data())
         })
+        setPosts(array)
       })
       return () => {
         unsub()
