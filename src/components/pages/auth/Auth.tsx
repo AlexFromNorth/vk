@@ -38,6 +38,7 @@ const Auth: FC = () => {
           userData.email,
           userData.password
         );
+        
         await updateProfile(res.user, {
           displayName: userData.name
         })
@@ -61,6 +62,12 @@ const Auth: FC = () => {
       name: '',
     });
   };
+
+
+
+
+
+  
 
   return (
     <>

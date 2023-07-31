@@ -18,7 +18,7 @@ const Characters: FC = () => {
 
     const unsub = onSnapshot(q, (doc) => {
       doc.forEach((e) => {
-        console.log(e.data());
+        // console.log(e.data());
       });
       const array: any[] = [];
       doc.forEach((d) => {

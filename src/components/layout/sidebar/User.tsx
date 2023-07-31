@@ -31,7 +31,6 @@ const User: FC = () => {
       }}
       />
       <Button
-      
         onClick={() => {
             signOut(ga);
             navigate('/auth')

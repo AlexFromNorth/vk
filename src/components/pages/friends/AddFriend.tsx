@@ -13,7 +13,7 @@ const AddFriend: FC = () => {
 const {db} = useAuth()
 
 
-  console.log(db)
+  // console.log(db)
   const [error, setError] = useState("");
 
   const [userData, setUserData] = useState<IUserData>({
@@ -34,7 +34,11 @@ const {db} = useAuth()
     } catch (e: any) {
       setError(e);
     }
-    setUsers("");
+    setUserData({
+      name: '',
+      email: "",
+      password: "",
+    });
   };
 
   return (
