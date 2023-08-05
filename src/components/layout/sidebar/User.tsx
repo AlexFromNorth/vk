@@ -3,10 +3,12 @@ import React, { FC } from "react";
 import { useAuth } from "../../providers/useAuth";
 import { signOut } from "firebase/auth";
 import { useNavigate } from "react-router-dom";
+import Firebase_db from "../../routes/Firebase_db";
 
 const User: FC = () => {
   const navigate = useNavigate();
   const { user, ga } = useAuth();
+  const currentUserAvatar = Firebase_db("users", 'currentUser')[0]?.userData?.avatar
 //   console.log(ga)
 //   console.log(signOut)
   return (
@@ -24,7 +26,7 @@ const User: FC = () => {
       <Chip
         label={user?.name || "Without a name"}
         variant="outlined"
-        avatar={<Avatar alt="" src={user?.avatar} />}
+        avatar={<Avatar alt="" src={currentUserAvatar} />}
         sx={{ display: "flex", marginBottom: 2 }}
         onClick={() => {
           navigate('/profile')

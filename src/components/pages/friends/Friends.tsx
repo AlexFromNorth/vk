@@ -11,7 +11,7 @@ const Friends: FC = () => {
   return (
     <>
       <Box>
-        <AddFriend />
+        {/* <AddFriend /> */}
         <Characters />
       </Box>
     </>

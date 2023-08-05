@@ -9,13 +9,20 @@ import {
 } from "firebase/auth";
 import { useAuth } from "../../providers/useAuth";
 import { useNavigate } from "react-router-dom";
+import { timeCreated } from "../../../types";
+import { addDoc, collection } from "firebase/firestore";
 
 const Auth: FC = () => {
-  const { ga, user } = useAuth();
+  const { ga, user, db } = useAuth();
 
   const [isRegForm, setIsRegForm] = useState(false);
   const [error, setError] = useState("");
   const [userData, setUserData] = useState<IUserData>({
+    isInNetwork: true,
+    avatar: 'https://omoro.ru/wp-content/uploads/2018/05/prikilnie-kartinki-na-avatarky-dlia-devyshek-12.jpg',
+    test: "",
+    uid: "",
+    name: "",
     email: "",
     password: "",
   } as IUserData);
@@ -38,36 +45,35 @@ const Auth: FC = () => {
           userData.email,
           userData.password
         );
-        
         await updateProfile(res.user, {
-          displayName: userData.name
-        })
-        // console.log(res.user)
+          displayName: userData.name,
+        });
+
+        userData.uid = ga.currentUser?.uid
+        await addDoc(collection(db, "users"), {
+          userData,
+          createdAt: timeCreated(new Date()),
+        });
       } catch (error: any) {
         error.message && setError(error.message);
       }
     } else {
-
       try {
         await signInWithEmailAndPassword(ga, userData.email, userData.password);
       } catch (error: any) {
         error.message && setError(error.message);
       }
-      // console.log("auth");
     }
-    // console.log(userData.email, userData.password);
     setUserData({
+      isInNetwork:true,
+      avatar: '',
+      test: "",
+      uid: "",
       email: "",
       password: "",
-      name: '',
+      name: "",
     });
   };
-
-
-
-
-
-  
 
   return (
     <>
@@ -82,9 +88,7 @@ const Auth: FC = () => {
             label="Name"
             variant="outlined"
             value={userData.name}
-            onChange={(e) =>
-              setUserData({ ...userData, name: e.target.value })
-            }
+            onChange={(e) => setUserData({ ...userData, name: e.target.value })}
             sx={{ display: "block", marginBottom: 3 }}
           />
           <TextField

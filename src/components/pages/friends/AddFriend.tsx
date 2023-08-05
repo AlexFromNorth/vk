@@ -17,6 +17,7 @@ const {db} = useAuth()
   const [error, setError] = useState("");
 
   const [userData, setUserData] = useState<IUserData>({
+
     name: '',
     email: "",
     password: "",
@@ -35,6 +36,10 @@ const {db} = useAuth()
       setError(e);
     }
     setUserData({
+      isInNetwork: true,
+      avatar: '',
+      test: "",
+      uid: '',
       name: '',
       email: "",
       password: "",

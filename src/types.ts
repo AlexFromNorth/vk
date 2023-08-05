@@ -14,7 +14,7 @@ export const timeCreated = (time:Date) => {
 
 export interface IUser {
     id: string
-    avatar: string
+    avatar?: string
     name: string
     isInNetwork?: boolean
 }
@@ -44,6 +44,9 @@ export interface IMessage {
 
 // 
 export interface IUserDataTest{
+    avatar: string
+    isInNetwork: boolean
+    uid: any
     email: string
     name: string
     password: string

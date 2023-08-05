@@ -8,36 +8,45 @@ import {
   query,
 } from "firebase/firestore";
 import { IFriends, IUser } from "../../../types";
+import Firebase_db from "../../routes/Firebase_db";
+import { Avatar, Box, Card, ListItemText } from "@mui/material";
 
 const Characters: FC = () => {
-  const { db } = useAuth();
-  const [characters, setCharacters] = useState<IFriends[]>([]);
+  // const { db } = useAuth();
+  // const [characters, setCharacters] = useState<IFriends[]>([]);
 
-  useEffect(() => {
-    const q = query(collection(db, "users"));
+  // useEffect(() => {
+  //   const q = query(collection(db, "users"));
 
-    const unsub = onSnapshot(q, (doc) => {
-      doc.forEach((e) => {
-        // console.log(e.data());
-      });
-      const array: any[] = [];
-      doc.forEach((d) => {
-        array.push(d.data());
-      });
-      setCharacters(array);
-    });
-    return () => {
-      unsub();
-    };
-  }, []);
+  //   const unsub = onSnapshot(q, (doc) => {
+  //     doc.forEach((e) => {
+  //       // console.log(e.data());
+  //     });
+  //     const array: any[] = [];
+  //     doc.forEach((d) => {
+  //       array.push(d.data());
+  //     });
+  //     setCharacters(array);
+  //   });
+  //   return () => {
+  //     unsub();
+  //   };
+  // }, []);
+
+  // Firebase_db("users", 'currentUser').forEach(el=>console.log(el))
 
   return (
     <div>
-      {characters.map((friend, i) => (
+      {Firebase_db("users").map((friend, i) => (
+        // {Firebase_db("users", ).map((friend, i) => (
         <>
-          <div>{friend.userData.name}</div>
-          <div>{friend.userData.email}</div>
-          <div>{friend.userData.password}</div>
+          <Card sx={{mb: 4, p: 2, cursor: 'default'}}>
+            <Box sx={{display: 'flex'}}>
+            <Avatar src={friend.userData.avatar}></Avatar>
+            <ListItemText primary={friend.userData.name}  sx={{marginLeft: '15px', marginTop: '4px'}}/>
+            </Box>
+            <ListItemText primary={`Email: ${friend.userData.email}`} />
+          </Card>
         </>
       ))}
     </div>

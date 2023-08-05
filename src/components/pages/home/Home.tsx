@@ -8,6 +8,7 @@ import { useAuth } from '../../providers/useAuth'
 import { useNavigate } from 'react-router-dom'
 
 const Home = () => {
+  
   // const [posts, setPosts] = useState<IPost[]>(initialPosts)
   const { user } = useAuth();
   // console.log(user)

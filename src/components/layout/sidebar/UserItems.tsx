@@ -12,12 +12,16 @@ import React, { FC } from "react";
 import { Link } from "react-router-dom";
 import { QuestionAnswer } from "@mui/icons-material";
 import { useNavigate } from "react-router-dom";
-import { users } from "./DataUsers";
-
-
+import Firebase_db from "../../routes/Firebase_db";
+// import { users } from "./DataUsers";
 
 const UserItems: FC = () => {
   const navigate = useNavigate();
+
+  // console.log(Firebase_db('users'))
+  Firebase_db("users").forEach((user) => {
+    // console.log(user.userData.uid);
+  });
 
   return (
     <Card
@@ -30,9 +34,10 @@ const UserItems: FC = () => {
         marginBottom: 5,
       }}
     >
-      {users.map((user) => (
-        <Link key={user.id}
-          to={`/profile/${user.id}`}
+      {Firebase_db("users").map((user) => (
+        <Link
+          key={user.userData.uid}
+          to={`/profile/${user.userData.uid}`}
           style={{
             display: "flex",
             alignItems: "center",
@@ -50,10 +55,10 @@ const UserItems: FC = () => {
           >
             <Avatar
               alt="avatar"
-              src={user.avatar}
+              src={user.userData.avatar}
               sx={{ width: 50, height: 50, borderRadius: "50%" }}
             />
-            {!!user.isInNetwork && (
+            {!!user.userData.isInNetwork && (
               <Box
                 sx={{
                   background: "#4FB14F",
@@ -68,7 +73,7 @@ const UserItems: FC = () => {
               />
             )}
           </Box>
-          <span style={{ fontSize: 14 }}>{user.name}</span>
+          <span style={{ fontSize: 14 }}>{user.userData.name}</span>
         </Link>
       ))}
       <List sx={{ display: "inline" }}>
