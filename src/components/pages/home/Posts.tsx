@@ -15,6 +15,7 @@ const Posts: FC = () => {
   const {db} = useAuth()
   // initialPosts
   const [posts, setPosts] = useState<IPost[]>([])
+  console.log(posts)
 
   useEffect(()=>{
     const q = query(collection(db, "posts"), orderBy('createdAt', "desc"));

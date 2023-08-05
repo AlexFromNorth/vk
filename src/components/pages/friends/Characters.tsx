@@ -10,6 +10,7 @@ import {
 import { IFriends, IUser } from "../../../types";
 import Firebase_db from "../../routes/Firebase_db";
 import { Avatar, Box, Card, ListItemText } from "@mui/material";
+import { Link } from "react-router-dom";
 
 const Characters: FC = () => {
   // const { db } = useAuth();
@@ -39,8 +40,11 @@ const Characters: FC = () => {
     <div>
       {Firebase_db("users").map((friend, i) => (
         // {Firebase_db("users", ).map((friend, i) => (
-        <>
-          <Card sx={{ mb: 4, p: 2, cursor: "default" }}>
+        <Card key={friend.userData.uid} sx={{ mb: 4, p: 2, cursor: "default" }}>
+          <Link
+            to={`/profile/${friend.userData.uid}`}
+            style={{color: 'black'}}
+          >
             <Box sx={{ display: "flex" }}>
               <Avatar src={friend.userData.avatar}></Avatar>
               <ListItemText
@@ -49,8 +53,8 @@ const Characters: FC = () => {
               />
             </Box>
             <ListItemText primary={`Email: ${friend.userData.email}`} />
-          </Card>
-        </>
+          </Link>
+        </Card>
       ))}
     </div>
   );
