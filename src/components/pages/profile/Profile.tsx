@@ -1,6 +1,6 @@
 import React, { FC, useEffect, useState } from "react";
 import { useAuth } from "../../providers/useAuth";
-import { Avatar, Box } from "@mui/material";
+import { Avatar, Box, Card, ListItemText } from "@mui/material";
 import { collection, onSnapshot, query } from "firebase/firestore";
 import { IFriends } from "../../../types";
 import { useParams } from "react-router-dom";
@@ -10,8 +10,6 @@ const Profile: FC = () => {
   const { user } = useAuth();
   const { db } = useAuth();
   const { id } = useParams();
-  // console.log(id)
-
 
   // const [characters, setCharacters] = useState<IFriends[]>([]);
 
@@ -36,7 +34,6 @@ const Profile: FC = () => {
   // console.log(user?.id);
   // console.log(characters[0].userData.uid)
 
-
   return (
     <Box
       sx={{
@@ -50,14 +47,37 @@ const Profile: FC = () => {
       <h2>{user?.name}</h2> */}
 
       <div>
-        {Firebase_db("users").map((friend:any) => (
-          user?.id == friend.userData.uid ?(
-          <>
-            {/* <div>{friend.userData.name}</div> */}
-            <div>{friend.userData.email}</div>
-            {/* <div>{friend.userData.password}</div> */}
-          </>) : false)
-        )}
+        {Firebase_db("users").map((friend: any) => {
+          if (!!id === true && id === friend.userData.uid) {
+            return (
+
+                <Box key={friend.userData.uid} sx={{  p: 2, cursor: "default" }}>
+                  <Box sx={{ display: "flex" }}>
+                    <Avatar src={friend.userData.avatar}></Avatar>
+                    <ListItemText
+                      primary={friend.userData.name}
+                      sx={{ marginLeft: "15px", marginTop: "4px" }}
+                    />
+                  </Box>
+                  <ListItemText primary={`Email: ${friend.userData.email}`} />
+                </Box>
+
+            );
+          } else if (!!id === false && user?.id === friend.userData.uid) {
+            return (
+              <Box key={friend.userData.uid} sx={{  p: 2, cursor: "default" }}>
+                  <Box sx={{ display: "flex" }}>
+                    <Avatar src={friend.userData.avatar}></Avatar>
+                    <ListItemText
+                      primary={friend.userData.name}
+                      sx={{ marginLeft: "15px", marginTop: "4px" }}
+                    />
+                  </Box>
+                  <ListItemText primary={`Email: ${friend.userData.email}`} />
+                </Box>
+            );
+          }
+        })}
       </div>
     </Box>
   );

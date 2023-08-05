@@ -40,10 +40,13 @@ const Characters: FC = () => {
       {Firebase_db("users").map((friend, i) => (
         // {Firebase_db("users", ).map((friend, i) => (
         <>
-          <Card sx={{mb: 4, p: 2, cursor: 'default'}}>
-            <Box sx={{display: 'flex'}}>
-            <Avatar src={friend.userData.avatar}></Avatar>
-            <ListItemText primary={friend.userData.name}  sx={{marginLeft: '15px', marginTop: '4px'}}/>
+          <Card sx={{ mb: 4, p: 2, cursor: "default" }}>
+            <Box sx={{ display: "flex" }}>
+              <Avatar src={friend.userData.avatar}></Avatar>
+              <ListItemText
+                primary={friend.userData.name}
+                sx={{ marginLeft: "15px", marginTop: "4px" }}
+              />
             </Box>
             <ListItemText primary={`Email: ${friend.userData.email}`} />
           </Card>
