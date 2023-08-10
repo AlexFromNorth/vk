@@ -1,10 +1,17 @@
-import React, { FC, useEffect, useState } from "react";
+import React, { FC, useEffect, useMemo, useState } from "react";
 import { IPost } from "../../../types";
 import { Avatar, Box, ImageList, ImageListItem } from "@mui/material";
 import { Link } from "react-router-dom";
-import { collection, doc, onSnapshot, orderBy, query } from "firebase/firestore";
+import {
+  collection,
+  doc,
+  onSnapshot,
+  orderBy,
+  query,
+} from "firebase/firestore";
 import { useAuth } from "../../providers/useAuth";
 import { initialPosts } from "./initialPosts";
+import Firebase_db from "../../routes/Firebase_db";
 
 // interface IPosts {
 //   posts: IPost[];
@@ -12,25 +19,29 @@ import { initialPosts } from "./initialPosts";
 
 // const Posts: FC<IPosts> = () => {
 const Posts: FC = () => {
-  const {db} = useAuth()
+  const { db } = useAuth();
+  const [posts, setPosts] = useState<IPost[]>([]);
+  // console.log(posts[0]?.author.id);
+
+
+  // console.log(Firebase_db("users", 'currentUser', user?.id))
   // initialPosts
-  const [posts, setPosts] = useState<IPost[]>([])
-  console.log(posts)
+  // console.log(Firebase_db('users','currentUser'))
 
-  useEffect(()=>{
-    const q = query(collection(db, "posts"), orderBy('createdAt', "desc"));
+  useEffect(() => {
+    const q = query(collection(db, "posts"), orderBy("createdAt", "desc"));
 
-      const unsub = onSnapshot(q, doc=>{
-        const array:IPost[]=[]
-        doc.forEach((d:any) =>{
-          array.push(d.data())
-        })
-        setPosts(array)
-      })
-      return () => {
-        unsub()
-      }
-  }, [])
+    const unsub = onSnapshot(q, (doc) => {
+      const array: IPost[] = [];
+      doc.forEach((d: any) => {
+        array.push(d.data());
+      });
+      setPosts(array);
+    });
+    return () => {
+      unsub();
+    };
+  }, []);
 
   return (
     <>

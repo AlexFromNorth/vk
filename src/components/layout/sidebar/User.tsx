@@ -8,7 +8,8 @@ import Firebase_db from "../../routes/Firebase_db";
 const User: FC = () => {
   const navigate = useNavigate();
   const { user, ga } = useAuth();
-  const currentUserAvatar = Firebase_db("users", 'currentUser')[0]?.userData?.avatar
+  const currentUserAvatar = Firebase_db("users", 'currentUser', user?.id)[0]?.userData?.avatar
+  // console.log(Firebase_db("users", 'currentUser', user?.id))
 //   console.log(ga)
 //   console.log(signOut)
   return (

@@ -9,7 +9,7 @@ import {
   where,
 } from "firebase/firestore";
 
-const Firebase_db = (el: string, filter?: any) => {
+const Firebase_db = (el: string, filter?: any, param?: any) => {
   const { db } = useAuth();
   const [characters, setCharacters] = useState<IFriends[]>([]);
 
@@ -18,11 +18,11 @@ const Firebase_db = (el: string, filter?: any) => {
     if (filter==='currentUser') {
       const q = query(
         collection(db, el),
-        where("userData.uid", "==", "yNSGxnC28eY32BeLoimAVZ4CNf42")
+        where("userData.uid", "==", param)
       );
 
       const unsub = onSnapshot(q, (doc) => {
-        doc.forEach((e) => {});
+        // doc.forEach((e) => {});
         const array: any[] = [];
         doc.forEach((d) => {
           array.push(d.data());
@@ -36,7 +36,7 @@ const Firebase_db = (el: string, filter?: any) => {
       const q = query(collection(db, el));
 
       const unsub = onSnapshot(q, (doc) => {
-        doc.forEach((e) => {});
+        // doc.forEach((e) => {});
         const array: any[] = [];
         doc.forEach((d) => {
           array.push(d.data());

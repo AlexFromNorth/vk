@@ -33,6 +33,9 @@ import {
 } from "@mui/material";
 import SendIcon from "@mui/icons-material/Send";
 import classes from "./style.module.css";
+import { getAuth } from "firebase/auth";
+
+
 
 const Messages: FC = () => {
   const { user, db } = useAuth();
@@ -40,7 +43,11 @@ const Messages: FC = () => {
   const [message, setMessage] = useState("");
   const [messages, setMessages] = useState<IMessage[]>([]);
 
-console.log(messages)
+  // const ga = getAuth();
+  // console.log(ga)
+  // console.log(db)
+
+
 
   useEffect(() => {
     const q = query(collection(db, "messages"), orderBy("createdAt", "desc"));

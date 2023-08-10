@@ -6,6 +6,7 @@ import Posts from './Posts'
 import { initialPosts } from './initialPosts'
 import { useAuth } from '../../providers/useAuth'
 import { useNavigate } from 'react-router-dom'
+import Messages from '../messages/Messages'
 
 const Home = () => {
   

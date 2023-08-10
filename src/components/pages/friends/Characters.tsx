@@ -36,10 +36,11 @@ const Characters: FC = () => {
 
   // Firebase_db("users", 'currentUser').forEach(el=>console.log(el))
 
+  // console.log(Firebase_db("users", 'currentUser'))
+
   return (
     <div>
       {Firebase_db("users").map((friend, i) => (
-        // {Firebase_db("users", ).map((friend, i) => (
         <Card key={friend.userData.uid} sx={{ mb: 4, p: 2, cursor: "default" }}>
           <Link
             to={`/profile/${friend.userData.uid}`}
