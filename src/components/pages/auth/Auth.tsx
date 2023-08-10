@@ -19,7 +19,7 @@ const Auth: FC = () => {
   const [error, setError] = useState("");
   const [userData, setUserData] = useState<IUserData>({
     isInNetwork: true,
-    avatar: 'https://omoro.ru/wp-content/uploads/2018/05/prikilnie-kartinki-na-avatarky-dlia-devyshek-12.jpg',
+    avatar: '',
     test: "",
     uid: "",
     name: "",
@@ -112,6 +112,16 @@ const Auth: FC = () => {
             }
             sx={{ display: "block", marginBottom: 3 }}
             required
+          />
+          <TextField
+            type="text"
+            label="Your url avatar"
+            variant="outlined"
+            value={userData.avatar}
+            onChange={(e) =>
+              setUserData({ ...userData, avatar: e.target.value })
+            }
+            sx={{ display: "block", marginBottom: 3 }}
           />
           <ButtonGroup
             variant="contained"

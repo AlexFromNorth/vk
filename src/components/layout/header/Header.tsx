@@ -6,7 +6,7 @@ import { useNavigate } from "react-router-dom";
 import { Avatar } from "@mui/material";
 
 const Header: FC = () => {
-  const [isSearchActive, setIsSearchActive] = useState(false);
+  // const [isSearchActive, setIsSearchActive] = useState(false);
   const navigate = useNavigate();
 
   return (
@@ -15,11 +15,11 @@ const Header: FC = () => {
         <Avatar src={logoImg} alt="VK"  onClick={() => navigate("/")}  sx={{cursor: 'pointer'}}/>
       </div>
       <div className={styles.wrapper}>
-        {!isSearchActive && <Search />}
+        {/* {!isSearchActive && <Search />} */}
         <input
           type="text"
           placeholder="Search"
-          onClick={() => setIsSearchActive(true)}
+          // onClick={() => setIsSearchActive(true)}
         />
       </div>
     </header>

@@ -37,19 +37,21 @@ export const AuthProvider: FC<Props> = ({ children }) => {
 
   useEffect(() => {
     const unListen = onAuthStateChanged(ga, (authUser) => {
-      const q = query(
-        collection(db, "users"),
-        where("userData.uid", "==", authUser?.uid)
-      );
+      console.log(authUser);
+      if (!!authUser) {
+        const q = query(
+          collection(db, "users"),
+          where("userData.uid", "==", authUser?.uid)
+        );
 
-      const unsub = onSnapshot(q, (doc) => {
-        const array: any[] = [];
-        doc.forEach((d) => {
-          array.push(d.data());
+        const unsub = onSnapshot(q, (doc) => {
+          const array: any[] = [];
+          doc.forEach((d) => {
+            array.push(d.data());
+          });
+          setCurrentUser(array);
         });
-        setCurrentUser(array);
-      });
-
+      }
     });
 
     return () => {
@@ -59,7 +61,6 @@ export const AuthProvider: FC<Props> = ({ children }) => {
 
   useEffect(() => {
     const unListen = onAuthStateChanged(ga, (authUser) => {
-
       if (authUser) {
         setUser({
           id: authUser.uid,
@@ -73,13 +74,12 @@ export const AuthProvider: FC<Props> = ({ children }) => {
       }
     });
 
-
     return () => {
       unListen();
     };
-  }, [currentUser]);
+  }, []);
 
-
+  // console.log(currentUser)
   const values = useMemo(
     () => ({
       user,
@@ -89,6 +89,7 @@ export const AuthProvider: FC<Props> = ({ children }) => {
     }),
     [user, ga]
   );
+  // console.log(user)
 
   return <AuthContext.Provider value={values}>{children}</AuthContext.Provider>;
 };

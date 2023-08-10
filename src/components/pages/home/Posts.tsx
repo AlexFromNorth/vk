@@ -19,10 +19,10 @@ import Firebase_db from "../../routes/Firebase_db";
 
 // const Posts: FC<IPosts> = () => {
 const Posts: FC = () => {
-  const { db } = useAuth();
+  const { db, user } = useAuth();
   const [posts, setPosts] = useState<IPost[]>([]);
   // console.log(posts[0]?.author.id);
-
+// console.log(user?.avatar)
 
   // console.log(Firebase_db("users", 'currentUser', user?.id))
   // initialPosts
@@ -43,6 +43,8 @@ const Posts: FC = () => {
     };
   }, []);
 
+
+  console.log(posts)
   return (
     <>
       {posts.map((post, idx) => (
@@ -86,6 +88,7 @@ const Posts: FC = () => {
               </div>
             </Box>
           </Link>
+          <input type="file" />
           <p>{post.content}</p>
           {post?.images?.length && (
             <ImageList variant="masonry" cols={3} gap={8}>
