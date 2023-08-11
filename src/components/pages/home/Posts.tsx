@@ -44,7 +44,7 @@ const Posts: FC = () => {
   }, []);
 
 
-  console.log(posts)
+  // console.log(posts)
   return (
     <>
       {posts.map((post, idx) => (
@@ -88,7 +88,6 @@ const Posts: FC = () => {
               </div>
             </Box>
           </Link>
-          <input type="file" />
           <p>{post.content}</p>
           {post?.images?.length && (
             <ImageList variant="masonry" cols={3} gap={8}>

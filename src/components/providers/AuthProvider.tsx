@@ -37,7 +37,7 @@ export const AuthProvider: FC<Props> = ({ children }) => {
 
   useEffect(() => {
     const unListen = onAuthStateChanged(ga, (authUser) => {
-      console.log(authUser);
+
       if (!!authUser) {
         const q = query(
           collection(db, "users"),
@@ -77,7 +77,7 @@ export const AuthProvider: FC<Props> = ({ children }) => {
     return () => {
       unListen();
     };
-  }, []);
+  }, [currentUser]);
 
   // console.log(currentUser)
   const values = useMemo(

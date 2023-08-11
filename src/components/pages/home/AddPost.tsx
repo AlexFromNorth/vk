@@ -3,8 +3,21 @@ import React, { FC, KeyboardEvent, useState } from "react";
 import { IAddPost, timeCreated } from "../../../types";
 // import { users } from "../../layout/sidebar/DataUsers";
 import { useAuth } from "../../providers/useAuth";
-import { addDoc, collection, doc, setDoc } from "firebase/firestore";
+import {
+  addDoc,
+  collection,
+  deleteField,
+  doc,
+  getDoc,
+  getDocs,
+  getFirestore,
+  query,
+  setDoc,
+  updateDoc,
+  where,
+} from "firebase/firestore";
 import SendIcon from "@mui/icons-material/Send";
+import { firestore } from "firebase-admin";
 
 const AddPost: FC = () => {
   const [test, useTest] = useState<string>("");
@@ -13,6 +26,8 @@ const AddPost: FC = () => {
   const [content1, setContent1] = useState<string>("");
   const { user, db } = useAuth();
   const [error, setError] = useState("");
+
+
 
   const addPostHandler = async (e: KeyboardEvent<HTMLInputElement>) => {
     if (e.key === "Enter" && user) {
@@ -29,6 +44,7 @@ const AddPost: FC = () => {
       setContent("");
     }
   };
+
   const formClick = async () => {
     try {
       await addDoc(collection(db, "posts"), {
