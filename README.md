@@ -1,4 +1,4 @@
-# Проект [WhatsApp Web App](https://wskymike.github.io/whatsapp-greenapi-react/) | Frontend
+# Проект [VK](https://github.com/AlexFromNorth/vk) | Frontend / Firebase
 
 ### 📜 Описание:
 Социальная сеть(ВК) на `React.js` для обмена сообщениями и новостями с возможность авторизации при использование `firebase`. Созданно с применением `Create React App` и имеет переиспользуемые компоненты. Применена методология БЭМ. 
@@ -36,13 +36,13 @@
 ```yarn start```
 <br />
 <br />
-<img src="src/images/Auth.png" alt="demo auth" width="400">
+<img src="src/images/Auth.png" alt="demo auth">
 <br />
 <br />
-<img src="src/images/News.png" alt="demo news" width="400">
+<img src="src/images/News.png" alt="demo news" >
 <br />
 <br />
 <img src="src/images/Messages.png" alt="demo messages" >
 <br />
 <br />
-<img src="src/images/Friends.png" alt="demo friends" width="800">
+<img src="src/images/Friends.png" alt="demo friends">
