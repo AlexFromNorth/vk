@@ -25,7 +25,7 @@
 
 1. Склонировать репозиторий в текущую папку:
 
-```git clone https://github.com/AlexFromNorth/vk.git ./```
+```git clone https://github.com/AlexFromNorth/vk.git ```
 
 2. Установить зависимости:
 
